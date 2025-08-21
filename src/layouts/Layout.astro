@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <title>{title}</title>
+  </head>
+  <body>
+    <div id="app" class="relative h-screen p-2 gap-2">
+      <aside class="[grid-area:aside] flex-col flex overflow-y-auto">
+        ASIDE
+      </aside>
+      <main class="[grid-area:main]">MAIN</main>
+      <footer class="[grid-area:player] min-h-[100px]">FOOTER</footer>
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  #app {
+    display: grid;
+    grid-template-areas:
+      "aside main main"
+      "player player player";
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr auto;
+  }
+</style>
+
+<style is:global>
+  html {
+    font-family: system-ui, sans-serif;
+    background-color: #000;
+  }
+</style>
